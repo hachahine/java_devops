@@ -20,8 +20,7 @@ import java.time.LocalDateTime;
 public class Device {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "device_seq_generator")
-    @SequenceGenerator(name = "device_seq_generator", sequenceName = "device_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;

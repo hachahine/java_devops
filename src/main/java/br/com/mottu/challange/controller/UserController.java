@@ -26,11 +26,16 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity logIn(@RequestBody @Valid UserDTO userDTO) {
-        var authenticationToken = new UsernamePasswordAuthenticationToken(userDTO.login(), userDTO.password());
-        var authentication = manager.authenticate(authenticationToken);
-        var tokenJWT = tokenService.getToken((User) authentication.getPrincipal());
+        try {
+            var authenticationToken = new UsernamePasswordAuthenticationToken(userDTO.login(), userDTO.password());
+            var authentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(new TokenDTO(tokenJWT));
+            var tokenJWT = tokenService.getToken((User) authentication.getPrincipal());
+
+            return ResponseEntity.ok(new TokenDTO(tokenJWT));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Erro na autenticação: " + e.getMessage());
+        }
     }
-
 }

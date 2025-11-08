@@ -1,4 +1,3 @@
-
 trigger:
 - main
 
@@ -6,8 +5,22 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: Maven@3
+  displayName: 'Executar Testes (Maven)'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'test'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.21'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 
 - task: Docker@2
+  displayName: 'Construir e Enviar Imagem Docker'
   inputs:
     containerRegistry: 'javadevopsacr'
     repository: 'java-devops'

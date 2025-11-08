@@ -37,8 +37,8 @@ O projeto está dividido nas seguintes camadas:
 
 ### Pré-requisitos
 
-- Java 21 instalado
-- Maven instalado
+- Java 21 instalado!
+- Maven instalado!
 
 ### Passos para rodar localmente
 

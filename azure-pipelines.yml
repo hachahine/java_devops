@@ -1,0 +1,18 @@
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'javadevopsacr'
+    repository: 'java-devops'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+      latest

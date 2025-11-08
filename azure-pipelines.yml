@@ -18,6 +18,9 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+  env:
+    DB_USER: $(DB_USER)
+    DB_PASSWORD: $(DB_PASSWORD)
 
 - task: Docker@2
   displayName: 'Construir e Enviar Imagem Docker'

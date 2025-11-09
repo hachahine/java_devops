@@ -6,7 +6,7 @@ pool:
 
 steps:
 - task: Maven@3
-  displayName: 'Executar Testes (Maven)'
+  displayName: 'Executar testes'
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'test'
